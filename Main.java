@@ -167,10 +167,10 @@ public class Main {
                 private void displayDashboard(UserAuth user){
                     while(true){
                         System.out.println("Welcome " + user.getUserName());
+                        System.out.println("Your current balance is: " + user.getUserBalance());
                         System.out.println("Options: ");
                         System.out.println("1: Check Balance");
                         System.out.println("2: Deposit");
-                        System.out.println("3: Change Pin");
                         System.out.println("4: Exit");
         
                         String input = sc.nextLine();
@@ -201,6 +201,7 @@ public class Main {
         
                 private void deposit(double amount, UserAuth user){
                     user.setUserBalance(user.getUserBalance() + amount);
+                    System.out.println("Your new balance is " + user.getUserBalance());
                 }
         
                 public void validatePin(String oldPin, String newPin, UserAuth user){
