@@ -68,11 +68,13 @@ public class Main {
         private String userName;
         private String userNumber;
         private String userPin;
+        private double userBalance;
 
-        public ValidUsers(String userName, String userNumber, String userPin) {
+        public ValidUsers(String userName, String userNumber, String userPin, double userBalance) {
             this.userName = userName;
             this.userNumber = userNumber;
             this.userPin = userPin;
+            this.userBalance = userBalance;
         }
 
         public boolean isValid(String userName, String userNumber, String userPin) {
@@ -85,11 +87,11 @@ public class Main {
             return false;
         }
 
-        public static ValidUsers validUser(List<ValidUsers> validUsers, Predicate<ValidUsers> checker) {
+        public static UserAuth validUser(List<ValidUsers> validUsers, Predicate<ValidUsers> checker) {
             for (ValidUsers validUser : validUsers ) {
                 if (checker.test(validUser)) {
                     System.out.println("Valid User");
-                    return validUser;
+                    return new UserAuth(validUser.userName, validUser.userNumber, validUser.userPin, validUser.userBalance);
                 }
             }
             System.out.println("Invalid User");
@@ -98,16 +100,16 @@ public class Main {
     }
     
     static class LoginValidation {
-        public static ValidUsers validate(
+        public static UserAuth validate(
             String userNameNumber,
             String userPin
         ) {
             List<ValidUsers> validUsers = new ArrayList<>();
-            validUsers.add(new ValidUsers("Test1", "123", "123"));
-            validUsers.add(new ValidUsers("Test2", "234", "123"));
-            validUsers.add(new ValidUsers("Test3", "345", "123"));
-            validUsers.add(new ValidUsers("Test4", "456", "123"));
-            validUsers.add(new ValidUsers("Test5", "567", "123"));
+            validUsers.add(new ValidUsers("Test1", "123", "123", 100.00));
+            validUsers.add(new ValidUsers("Test2", "234", "123", 100.00));
+            validUsers.add(new ValidUsers("Test3", "345", "123", 100.00));
+            validUsers.add(new ValidUsers("Test4", "456", "123", 100.00));
+            validUsers.add(new ValidUsers("Test5", "567", "123", 100.00));
             return ValidUsers.validUser(validUsers, vu->vu.isValid(userNameNumber, userNameNumber, userPin));
         }
     }
