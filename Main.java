@@ -3,17 +3,6 @@ public class Main {
 
     }
     //team kamatis
-
-    //team kamatis eof
-
-    //team sibuyas
-
-    //team sibuyas eof
-
-    //team ba
-    
-    //team ba eof
-
     class UserAuth{
 
         //fields
@@ -60,4 +49,14 @@ public class Main {
 
 
     }
+
+    //team kamatis eof
+
+    //team sibuyas
+
+    //team sibuyas eof
+
+    //team ba
+
+    //team ba eof
 }
