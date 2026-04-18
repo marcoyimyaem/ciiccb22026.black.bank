@@ -53,6 +53,20 @@ public class Main {
     //team kamatis eof
 
     //team sibuyas
+    
+    static class LoginValidation {
+        public static boolean validate(
+            String userName,
+            String userNumber,
+            String userPin
+        ) {
+            if((userName.equals("Test") & userPin.equals("123"))
+               | (userNumber.equals("123") & userPin.equals("123"))) {
+                return true;
+            }
+            return false;
+        }
+    }
 
     //team sibuyas eof
 
