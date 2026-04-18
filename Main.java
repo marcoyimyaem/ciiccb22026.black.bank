@@ -55,26 +55,52 @@ public class Main {
     //team kamatis eof
 
     //team sibuyas
+
+    static class ValidUsers {
+        private String userName;
+        private String userNumber;
+        private String userPin;
+
+        public ValidUsers(String userName, String userNumber, String userPin) {
+            this.userName = userName;
+            this.userNumber = userNumber;
+            this.userPin = userPin;
+        }
+
+        public boolean isValid(String userName, String userNumber, String userPin) {
+            if (this.userName.equals(userName) & this.userPin.equals(userPin)) {
+                return true;
+            }
+            if(this.userNumber.equals(userNumber) & this.userPin.equals(userPin)) {
+                return true;
+            }
+            return false;
+        }
+
+        public static boolean validUser(List<ValidUsers> validUsers, Predicate<ValidUsers> checker) {
+            for (ValidUsers validUser : validUsers ) {
+                if (checker.test(validUser)) {
+                    System.out.println("Valid User");
+                    return true;
+                }
+            }
+            System.out.println("Invalid User");
+            return false;
+        }
+    }
     
     static class LoginValidation {
         public static boolean validate(
-            String userName,
+            String userNameNumber,
             String userPin
         ) {
-            List<UserAuth> validUsers = new ArrayList<>();
-            validUsers.add(new UserAuth("Test1", "123", "123", 200.00));
-            validUsers.add(new UserAuth("Test2", "234", "123", 200.00));
-            validUsers.add(new UserAuth("Test3", "345", "123", 200.00));
-            validUsers.add(new UserAuth("Test4", "456", "123", 200.00));
-            validUsers.add(new UserAuth("Test5", "567", "123", 200.00));
-            
-            boolean isValid = false;
-            for (UserAuth validUser : validUsers) {
-                if((userName.equals(validUser.getUserName()) & userPin.equals(validUser.getUserPin()))) {
-                    isValid = true;
-                }
-            }
-            return isValid;
+            List<ValidUsers> validUsers = new ArrayList<>();
+            validUsers.add(new ValidUsers("Test1", "123", "123"));
+            validUsers.add(new ValidUsers("Test2", "234", "123"));
+            validUsers.add(new ValidUsers("Test3", "345", "123"));
+            validUsers.add(new ValidUsers("Test4", "456", "123"));
+            validUsers.add(new ValidUsers("Test5", "567", "123"));
+            return ValidUsers.validUser(validUsers, vu->vu.isValid(userNameNumber, userNameNumber, userPin));
         }
     }
 
