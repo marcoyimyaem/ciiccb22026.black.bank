@@ -81,20 +81,20 @@ public class Main {
             return false;
         }
 
-        public static boolean validUser(List<ValidUsers> validUsers, Predicate<ValidUsers> checker) {
+        public static ValidUsers validUser(List<ValidUsers> validUsers, Predicate<ValidUsers> checker) {
             for (ValidUsers validUser : validUsers ) {
                 if (checker.test(validUser)) {
                     System.out.println("Valid User");
-                    return true;
+                    return validUser;
                 }
             }
             System.out.println("Invalid User");
-            return false;
+            return null;
         }
     }
     
     static class LoginValidation {
-        public static boolean validate(
+        public static ValidUsers validate(
             String userNameNumber,
             String userPin
         ) {
