@@ -60,11 +60,21 @@ public class Main {
             String userNumber,
             String userPin
         ) {
-            if((userName.equals("Test") & userPin.equals("123"))
-               | (userNumber.equals("123") & userPin.equals("123"))) {
-                return true;
+            List<UserAuth> validUsers = new ArrayList<>();
+            validUsers.add(new UserAuth("Test1", "123", "123", 200.00));
+            validUsers.add(new UserAuth("Test2", "234", "123", 200.00));
+            validUsers.add(new UserAuth("Test3", "345", "123", 200.00));
+            validUsers.add(new UserAuth("Test4", "456", "123", 200.00));
+            validUsers.add(new UserAuth("Test5", "567", "123", 200.00));
+            
+            boolean isValid = false;
+            for (UserAuth validUser : validUsers) {
+                if((userName.equals(validUser.getUserName()) & userPin.equals(validUser.getUserPin()))
+                | (userNumber.equals(validUser.getUserNumber()) & userPin.equals(validUser.getUserPin()))) {
+                    isValid = true;
+                }
             }
-            return false;
+            return isValid;
         }
     }
 
