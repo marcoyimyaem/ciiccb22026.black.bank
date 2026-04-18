@@ -13,7 +13,7 @@ public class Main {
         console.displayMenu();
     }
     //team kamatis
-    class UserAuth{
+    static class UserAuth{
 
         //fields
         String userName;
@@ -142,23 +142,21 @@ public class Main {
                 private void displayLogin(){
                     Scanner sc = new Scanner(System.in);
                     final int MAX_LOGIN_LIMIT = 3;
-                    boolean isSuccessLogin = false;
                     int numTries = 0;
                     while(true){
-                        if(numTries <= MAX_LOGIN_LIMIT){
+                        if(numTries < MAX_LOGIN_LIMIT){
                             System.out.println("Please enter username or number: ");
                             String username = sc.nextLine();
                             System.out.println("Please enter your password: ");
                             String userPin = sc.nextLine();
-                            ValidUsers user = LoginValidation.validate(username, userPin);
-                            System.out.println(user.userName);
-                            // if(user !== null){
-                            //     // displayDashboard(user);
-                            //     break;
-                            // }else{
-                            //     System.out.println("Invalid username or password");
-                            //     numTries++;
-                            // }
+                            UserAuth user = LoginValidation.validate(username, userPin);
+                            if(user != null){
+                                displayDashboard(user);
+                                break;
+                            }else{
+                                System.out.println("Invalid username or password");
+                                numTries++;
+                            }
                         }else{
                             System.out.println("Sorry your ip is blocked!");
                             break;
@@ -202,7 +200,7 @@ public class Main {
                 }
         
                 public void deposit(double amount, UserAuth user){
-                    user.setUserBalance(amount);
+                    user.setUserBalance(user.getUserBalance() + amount);
                 }
         
                 public void validatePin(String oldPin, String newPin, UserAuth user){
