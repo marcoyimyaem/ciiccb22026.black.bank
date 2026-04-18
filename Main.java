@@ -70,8 +70,7 @@ public class Main {
             
             boolean isValid = false;
             for (UserAuth validUser : validUsers) {
-                if((userName.equals(validUser.getUserName()) & userPin.equals(validUser.getUserPin()))
-                | (userNumber.equals(validUser.getUserNumber()) & userPin.equals(validUser.getUserPin()))) {
+                if((userName.equals(validUser.getUserName()) & userPin.equals(validUser.getUserPin()))) {
                     isValid = true;
                 }
             }
