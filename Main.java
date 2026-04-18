@@ -199,7 +199,7 @@ public class Main {
                     }
                 }
         
-                public void deposit(double amount, UserAuth user){
+                private void deposit(double amount, UserAuth user){
                     user.setUserBalance(user.getUserBalance() + amount);
                 }
         
