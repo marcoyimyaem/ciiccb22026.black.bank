@@ -59,7 +59,6 @@ public class Main {
     static class LoginValidation {
         public static boolean validate(
             String userName,
-            String userNumber,
             String userPin
         ) {
             List<UserAuth> validUsers = new ArrayList<>();
