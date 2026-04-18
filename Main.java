@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -76,20 +78,20 @@ public class Main {
             return false;
         }
 
-        public static ValidUsers validUser(List<ValidUsers> validUsers, Predicate<ValidUsers> checker) {
+        public static boolean validUser(List<ValidUsers> validUsers, Predicate<ValidUsers> checker) {
             for (ValidUsers validUser : validUsers ) {
                 if (checker.test(validUser)) {
                     System.out.println("Valid User");
-                    return validUser;
+                    return true;
                 }
             }
             System.out.println("Invalid User");
-            return null;
+            return false;
         }
     }
     
     static class LoginValidation {
-        public static ValidUsers validate(
+        public static boolean validate(
             String userNameNumber,
             String userPin
         ) {
