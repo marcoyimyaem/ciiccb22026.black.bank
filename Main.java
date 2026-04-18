@@ -7,6 +7,10 @@ import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
+        Main m = new Main();
+        Console console = m.new Console();
+
+        console.displayMenu();
     }
     //team kamatis
     class UserAuth{
@@ -133,7 +137,7 @@ public class Main {
                     }
                 }
         
-                public void displayLogin(){
+                private void displayLogin(){
                     Scanner sc = new Scanner(System.in);
                     final int MAX_LOGIN_LIMIT = 3;
                     boolean isSuccessLogin = false;
@@ -144,14 +148,15 @@ public class Main {
                             String username = sc.nextLine();
                             System.out.println("Please enter your password: ");
                             String userPin = sc.nextLine();
-                            UserAuth user = LoginValidation.validate(username, userPin);
-                            if(user !== null){
-                                displayDashboard(user);
-                                break;
-                            }else{
-                                System.out.println("Invalid username or password");
-                                numTries++;
-                            }
+                            ValidUsers user = LoginValidation.validate(username, userPin);
+                            System.out.println(user.userName);
+                            // if(user !== null){
+                            //     // displayDashboard(user);
+                            //     break;
+                            // }else{
+                            //     System.out.println("Invalid username or password");
+                            //     numTries++;
+                            // }
                         }else{
                             System.out.println("Sorry your ip is blocked!");
                             break;
@@ -159,7 +164,7 @@ public class Main {
                     }
                 }
         
-                public void displayDashboard(UserAuth user){
+                private void displayDashboard(UserAuth user){
                     while(true){
                         System.out.println("Welcome " + user.getUserName());
                         System.out.println("Options: ");
